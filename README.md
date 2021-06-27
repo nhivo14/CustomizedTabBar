@@ -18,7 +18,7 @@ In ViewDidLoad(), do:
 ![Screen Shot 2021-06-27 at 11 36 01 PM](https://user-images.githubusercontent.com/86060376/123552558-e87a4b00-d7a0-11eb-9e48-97374dbbdab4.png)
 
 #### Step 4: Extension
-After doing step 3, you must add extension for ViewController and implemnet some functions. 
+After doing step 3, you must add extension for ViewController and implement some functions as below:
 
 ![Screen Shot 2021-06-27 at 11 41 02 PM](https://user-images.githubusercontent.com/86060376/123552620-29725f80-d7a1-11eb-9d5d-335927b2ceb4.png)
 
@@ -26,3 +26,7 @@ After doing step 3, you must add extension for ViewController and implemnet some
 Here your result:
 
 ![Screen Shot 2021-06-27 at 11 54 44 PM](https://user-images.githubusercontent.com/86060376/123552984-12347180-d7a3-11eb-800c-8dae982bb040.png)
+
+## Contact:
+If you have any problems with this framework, feel free to reach me at nhivo.yn@gmail.com.
+##### Thank you

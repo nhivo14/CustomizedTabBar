@@ -9,4 +9,5 @@ Try this TabBar like the way the example below:
 Clone or download this framework on this github repository.
 
 
-#### Import to the ViewControll
+#### Import to the ViewController
+

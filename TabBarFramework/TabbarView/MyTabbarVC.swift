@@ -29,7 +29,6 @@ public class MyTabbarVC: UITabBarController {
         })
         /// Set default selected index for the first item
         selectedIndex = 0
-        
     }
     
     /// Handle customized tab bar
@@ -48,7 +47,6 @@ public class MyTabbarVC: UITabBarController {
         customTabBar.translatesAutoresizingMaskIntoConstraints = false
         customTabBar.clipsToBounds = true
         customTabBar.selectedColor = dataSource.tabBarSelectedColor()
-       
         customTabBar.activateTab(tab: 0)
         customTabBar.itemTapped = changeTab(tab:)
         view.addSubview(customTabBar)

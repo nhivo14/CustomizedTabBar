@@ -7,20 +7,22 @@
 
 import UIKit
 
-// Vì khi đóng gói thành framework, ở ngoài nhìn vào chỉ thấy được protocol
-// Nên viết comment code cho từng function protocol, để phân biệt
 public protocol MyTabbarVCDatasource: class {
-    /// Ví dụ: func này làm gì đó
-    /// Return: màng gì đó để làm gì đó
+    /// Returns a list of UIViewController
     func tabBarControllerViewControllers() -> [UIViewController]
+    
+    /// Returns a list of UITabBarItem (including title, image and tag of every single UITabBarItem)
     func tabBarItems() -> [UITabBarItem]
-    func tabBarBackgroundColor() -> CGColor
+    
+    /// Returns the height of the TabBar
     func tabBarHeight() -> CGFloat
+    
+    /// Returns the color on the UITabBarItem when it is selected
     func tabBarSelectedColor() -> CGColor
 }
 
 public protocol MyTabbarVCDelegate: class {
-    /// Ví dụ: function này để làm gì đó
-    /// - Parameter index: param này truyền vào để làm gì đó, ý nghĩa như thế nào
+    /// Tells the delegate the UITabBarItem is selected
+    /// - Parameter index: shows the tag of the UITabBarItem
     func didSelectItemAt(index: Int)
 }

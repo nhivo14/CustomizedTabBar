@@ -7,12 +7,16 @@
 
 import UIKit
 
-class CustomTabbar: UIView {
-    // khi viết framwork, đối với những biến public nên có comment để biết biết đó dùng như thế nào,
-    // tương tự với function cũng vậy
-    var itemTapped: ((_ tab: Int) -> Void)?
-    var activeItem: Int = 0
-    var selectedColor: CGColor!
+public class CustomTabbar: UIView {
+    /// Tells the delegate the tab bar item is tapped
+    public var itemTapped: ((_ tab: Int) -> Void)?
+    /// The color on the tab bar item  when it is selected
+    public var selectedColor: CGColor!
+    
+    private var activeItem: Int = 0
+    
+    let spacingBetweenTabs: CGFloat = 20
+    let borderLayerName = "Active Border"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,11 +28,11 @@ class CustomTabbar: UIView {
     
     convenience init(menuItems: [UITabBarItem], frame: CGRect) {
         self.init(frame: frame)
-        layer.backgroundColor = UIColor.white.cgColor
+        layer.backgroundColor = UIColor.blue.cgColor
         // Create every single tab bar item
         for index in 0 ..< menuItems.count {
-            let itemWidth = frame.width / CGFloat(menuItems.count)
-            let offsetX = itemWidth * CGFloat(index)
+            let itemWidth: CGFloat = frame.width / CGFloat(menuItems.count)
+            let offsetX: CGFloat = itemWidth * CGFloat(index)
             
             let itemView = createTabItem(item: menuItems[index])
             itemView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +52,7 @@ class CustomTabbar: UIView {
     /// Create a tab bar item
     /// - Parameter item: UITabBarItem
     /// - Returns: UIView
-    func createTabItem(item: UITabBarItem) -> UIView {
+    public func createTabItem(item: UITabBarItem) -> UIView {
         let tabBarItem = UIView()
         tabBarItem.layer.backgroundColor = UIColor.clear.cgColor
         tabBarItem.translatesAutoresizingMaskIntoConstraints = false
@@ -86,24 +90,21 @@ class CustomTabbar: UIView {
     }
     
     @objc func handleTap(_ sender: UIGestureRecognizer) {
-        // không nên force unwrap các biến optional, mà nên dùng if let hoặc guard let
-        switchTab(from: activeItem, to: sender.view!.tag)
+        guard let view = sender.view else { return }
+        switchTab(from: activeItem, to: view.tag)
     }
     
-    func switchTab(from: Int, to: Int) {
+    private func switchTab(from: Int, to: Int) {
         deactivateTab(tab: from)
         activateTab(tab: to)
     }
     
-    func activateTab(tab: Int) {
+    public func activateTab(tab: Int) {
         let tabToActivate = subviews[tab]
-        let borderWidth = tabToActivate.frame.width - 20
+        let borderWidth = tabToActivate.frame.width - spacingBetweenTabs
         let borderLayer = CALayer()
         borderLayer.backgroundColor = selectedColor
-        // với những name kiểu này nên define ra constant
-        // và nên có 1 chỗ để lưu những constant đó
-        // -> sửa tương tự cho các class khác
-        borderLayer.name = "Active Border"
+        borderLayer.name = borderLayerName
         borderLayer.frame = CGRect(x: 10, y: 0, width: borderWidth, height: 2)
         
         // nếu được thì cho ở ngoài có thể chỉnh sửa ui trạng thái active/ deactive của tabbar càng tốt
@@ -123,9 +124,9 @@ class CustomTabbar: UIView {
         layoutIfNeeded()
     }
     
-    func deactivateTab(tab: Int) {
+    private func deactivateTab(tab: Int) {
         let inactiveTab = subviews[tab]
-        let layerToRemove = inactiveTab.layer.sublayers?.filter({ $0.name == "Active Border" })
+        let layerToRemove = inactiveTab.layer.sublayers?.filter({ $0.name == borderLayerName })
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseIn, .allowUserInteraction]) {

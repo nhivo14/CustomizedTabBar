@@ -8,34 +8,19 @@
 import UIKit
 
 // framework nên để từ khóa là open để các lớp con khi kế thừa có thể overide được
-public class MyTabbarVC: UITabBarController {
-    
-    // nên gom các biến cùng chung loại về cùng 1 chỗ
-    // ví dụ:
-    // các biến public nằm chung với nhau
-    // các biến private nằm chung
-    // constant nằm chung 1 nơi
-    
-    /**
-     ví dụ sau khi sửa => sửa tương tụ cho các class khác.
-     public weak var myTabbarVCDelegate: MyTabbarVCDelegate?
-     public weak var myTabbarVCDatasource: MyTabbarVCDatasource? {
-         didSet {
-             loadTabBar()
-         }
-     }
-     
-     var customTabBar: CustomTabbar!
-     */
-    
+open class MyTabbarVC: UITabBarController {
+    /// The object that acts as the data source of the myTabBar
     public weak var myTabbarVCDatasource: MyTabbarVCDatasource? {
-        // lỗi coding convention
         didSet{
             loadTabBar()
         }
     }
+    /// The object that acts as the delegate of the myTabBar
     public weak var myTabbarVCDelegate: MyTabbarVCDelegate?
+    
     var customTabBar: CustomTabbar!
+    
+    let defaultSelection = 0
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +34,7 @@ public class MyTabbarVC: UITabBarController {
             self.viewControllers = viewControllers
         })
         /// Set default selected index for the first item
-        selectedIndex = 0
+        selectedIndex = defaultSelection
     }
     
     /// Handle customized tab bar
@@ -68,17 +53,16 @@ public class MyTabbarVC: UITabBarController {
         customTabBar.translatesAutoresizingMaskIntoConstraints = false
         customTabBar.clipsToBounds = true
         customTabBar.selectedColor = dataSource.tabBarSelectedColor()
-        customTabBar.activateTab(tab: 0)
+        customTabBar.activateTab(tab: defaultSelection)
         customTabBar.itemTapped = changeTab(tab:)
         view.addSubview(customTabBar)
-        view.backgroundColor = .white
         // Auto layout for customzied tab bar
         NSLayoutConstraint.activate([
             customTabBar.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
             customTabBar.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
             customTabBar.widthAnchor.constraint(equalToConstant: tabBar.frame.width),
             customTabBar.heightAnchor.constraint(equalToConstant: dataSource.tabBarHeight()),
-            customTabBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            customTabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         // Add viewcontrollers

@@ -7,8 +7,29 @@
 
 import UIKit
 
+// framework nên để từ khóa là open để các lớp con khi kế thừa có thể overide được
 public class MyTabbarVC: UITabBarController {
+    
+    // nên gom các biến cùng chung loại về cùng 1 chỗ
+    // ví dụ:
+    // các biến public nằm chung với nhau
+    // các biến private nằm chung
+    // constant nằm chung 1 nơi
+    
+    /**
+     ví dụ sau khi sửa => sửa tương tụ cho các class khác.
+     public weak var myTabbarVCDelegate: MyTabbarVCDelegate?
+     public weak var myTabbarVCDatasource: MyTabbarVCDatasource? {
+         didSet {
+             loadTabBar()
+         }
+     }
+     
+     var customTabBar: CustomTabbar!
+     */
+    
     public weak var myTabbarVCDatasource: MyTabbarVCDatasource? {
+        // lỗi coding convention
         didSet{
             loadTabBar()
         }

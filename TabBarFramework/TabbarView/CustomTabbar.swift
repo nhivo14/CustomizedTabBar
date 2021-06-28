@@ -8,6 +8,8 @@
 import UIKit
 
 class CustomTabbar: UIView {
+    // khi viết framwork, đối với những biến public nên có comment để biết biết đó dùng như thế nào,
+    // tương tự với function cũng vậy
     var itemTapped: ((_ tab: Int) -> Void)?
     var activeItem: Int = 0
     var selectedColor: CGColor!
@@ -84,6 +86,7 @@ class CustomTabbar: UIView {
     }
     
     @objc func handleTap(_ sender: UIGestureRecognizer) {
+        // không nên force unwrap các biến optional, mà nên dùng if let hoặc guard let
         switchTab(from: activeItem, to: sender.view!.tag)
     }
     
@@ -97,9 +100,13 @@ class CustomTabbar: UIView {
         let borderWidth = tabToActivate.frame.width - 20
         let borderLayer = CALayer()
         borderLayer.backgroundColor = selectedColor
+        // với những name kiểu này nên define ra constant
+        // và nên có 1 chỗ để lưu những constant đó
+        // -> sửa tương tự cho các class khác
         borderLayer.name = "Active Border"
         borderLayer.frame = CGRect(x: 10, y: 0, width: borderWidth, height: 2)
         
+        // nếu được thì cho ở ngoài có thể chỉnh sửa ui trạng thái active/ deactive của tabbar càng tốt
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.8,
                            delay: 0.0,

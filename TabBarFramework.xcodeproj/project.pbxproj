@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20426941268984160073AAA7 /* TabBarFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD884B8E267B6D520023A9B3 /* TabBarFramework.framework */; };
+		20426942268984160073AAA7 /* TabBarFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD884B8E267B6D520023A9B3 /* TabBarFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		20B4B235267FA7BA003B1103 /* MyTabbarVCDatasource+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4B234267FA7BA003B1103 /* MyTabbarVCDatasource+Delegate.swift */; };
 		20B4B246267FB1FF003B1103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4B245267FB1FF003B1103 /* AppDelegate.swift */; };
 		20B4B248267FB1FF003B1103 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4B247267FB1FF003B1103 /* SceneDelegate.swift */; };
@@ -31,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		20426943268984160073AAA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD884B85267B6D520023A9B3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD884B8D267B6D520023A9B3;
+			remoteInfo = TabBarFramework;
+		};
 		CD884B99267B6D520023A9B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD884B85267B6D520023A9B3 /* Project object */;
@@ -39,6 +48,20 @@
 			remoteInfo = TabBarFramework;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		20426945268984160073AAA7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				20426942268984160073AAA7 /* TabBarFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		20B4B234267FA7BA003B1103 /* MyTabbarVCDatasource+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyTabbarVCDatasource+Delegate.swift"; sourceTree = "<group>"; };
@@ -75,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20426941268984160073AAA7 /* TabBarFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +127,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20426940268984160073AAA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		20B4B233267FA77D003B1103 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +179,7 @@
 				CD884B9B267B6D520023A9B3 /* TabBarFrameworkTests */,
 				20B4B244267FB1FF003B1103 /* ExampleApp */,
 				CD884B8F267B6D520023A9B3 /* Products */,
+				20426940268984160073AAA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,10 +245,12 @@
 				20B4B23F267FB1FF003B1103 /* Sources */,
 				20B4B240267FB1FF003B1103 /* Frameworks */,
 				20B4B241267FB1FF003B1103 /* Resources */,
+				20426945268984160073AAA7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				20426944268984160073AAA7 /* PBXTargetDependency */,
 			);
 			name = ExampleApp;
 			productName = ExampleApp;
@@ -402,6 +436,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		20426944268984160073AAA7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD884B8D267B6D520023A9B3 /* TabBarFramework */;
+			targetProxy = 20426943268984160073AAA7 /* PBXContainerItemProxy */;
+		};
 		CD884B9A267B6D520023A9B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CD884B8D267B6D520023A9B3 /* TabBarFramework */;

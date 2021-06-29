@@ -44,7 +44,7 @@ open class MyTabbarVC: UITabBarController {
     ///   - completion:
     func setupCustomTabMenu(_ menuItems: [UITabBarItem], _ vc: [UIViewController], completion: @escaping ([UIViewController]) -> Void) {
         guard let dataSource = myTabbarVCDatasource else { return }
-        let frame = tabBar.frame
+        let frame = tabBar.bounds
         var controllers = [UIViewController]()
         // Hide default system tab bar
         tabBar.isHidden = true
@@ -74,6 +74,11 @@ open class MyTabbarVC: UITabBarController {
     func changeTab(tab: Int) {
         self.selectedIndex = tab
         myTabbarVCDelegate?.didSelectItemAt(index: tab)
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        guard let customTabbar = customTabBar else { return }
+        customTabbar.activateTabAgain()
     }
 }
 
